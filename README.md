@@ -14,16 +14,16 @@ dotnet test .\Pipeline.sln
 
 ## Utiliser le Worker
 
-Par défaut, le Worker utilise le fichier local
-`pipeline.example.json`, ce qui permet de le lancer immédiatement :
-
 ```powershell
+$env:PIPELINE_URL = "https://raw.githubusercontent.com/JLou/dotnet-course/main/eval-1/pipeline.json"
 dotnet run --project .\Pipeline.Worker\Pipeline.Worker.csproj
 ```
 
-Le Worker télécharge un fichier JSON depuis l'URL configurée dans
-`Pipeline.Worker/appsettings.json` (`PipelineUrl`) ou dans la variable
-d'environnement `PIPELINE_URL`.
+L'URL peut aussi être fournie avec la configuration .NET :
+
+```powershell
+dotnet run --project .\Pipeline.Worker\Pipeline.Worker.csproj -- --PipelineUrl="https://raw.githubusercontent.com/JLou/dotnet-course/main/eval-1/pipeline.json"
+```
 
 ```powershell
 $env:PIPELINE_URL = "https://exemple.fr/pipeline.json"
